@@ -1,0 +1,412 @@
+/* General styles */
+body {
+    font-family: inherit;
+    background-image: url('images/interface_bb.jpg');
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #0A192F;
+    color: #FFD700;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-color 0.3s;
+}
+.hidden-content {
+    display: none;
+}
+#popup, #duplicate-popup {
+    display: none;
+}
+.profile-pic {
+    border-radius: 50%;
+    border: 3px solid yellow;
+    width: 100px;
+    height: 100px;
+  }
+  
+
+/* Side Dashboard */
+.side-dashboard {
+    width: 200px;
+    height: 100vh;
+    backdrop-filter: blur(20px);
+    background-color: rgba(10, 25, 47, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.side-dashboard h2 {
+    color: #FFD700;
+    margin-top: 4rem;
+}
+
+.side-dashboard a {
+    color: #FFD700;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.side-dashboard a:hover {
+    width: 180px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    border: 3px solid #FFD700;
+    transform: scale(1.2);
+    background-color: rgba(255, 215, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+/* Profile Section */
+.profile {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #FFD700;
+}
+
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #ddd;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: rgb(7, 10, 66);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Contestant Cards */
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-left: 250px;
+}
+
+.card {
+    background: linear-gradient(45deg, #0A192F, #1E3A5F);
+    border: 3px solid #FFD700;
+    width: 200px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #FFD700;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(255, 215, 0, 0.5);
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #FFD700;
+}
+.card h3 {
+    margin: 10px 0;
+}
+
+.card button {
+    padding: 10px 20px;
+    background-color: #FFD700;
+    color: #0A192F;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.votes {
+    margin: 10px 0;
+    font-size: 16px;
+    color: rgb(245, 245, 245);
+}
+.card button:hover {
+    background-color: #E6C300;
+    transform: scale(1.1);
+}
+
+/* Popup Styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+
+.popup-content {
+    background-color: #1E3A5F;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #FFD700;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #E6C300;
+}
+
+/* Timer Popup */
+#timer-popup .popup-content {
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #1E3A5F;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+}
+
+#timer-popup #timer {
+    margin: 20px 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s;
+}
+
+.popup-content {
+    background-color: #1E3A5F;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+}
+
+
+.popup-content h2 {
+    margin: 0 0 20px;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: rgb(4, 13, 49);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Avatar Creation Section */
+.avatar-section {
+display: none;
+padding: 20px;
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+position: absolute;
+top: 50px;
+left: 50%;
+transform: translateX(-50%);
+max-width: 500px;
+}
+
+.avatar-section h2 {
+text-align: center;
+}
+
+.avatar-preview {
+margin: 20px 0;
+}
+
+.avatar-preview img {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+border: 2px solid #4CAF50;
+object-fit: cover;
+display: block;
+margin: 0 auto;
+}
+
+#avatar-upload {
+display: block;
+margin: 10px auto;
+}
+
+button {
+margin: 10px 0;
+padding: 10px 20px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+button:hover {
+background-color: #45a049;
+}
+
+#reset-avatar {
+background-color: #f44336;
+}
+
+#reset-avatar:hover {
+background-color: #d32f2f;
+}
+
+
+/* Vote count page */
+.vote-count-page {
+    display:none;
+    text-align: center;
+    padding: 50px;
+}
+
+.vote-count-page h1 {
+    margin-bottom: 40px;
+    color:#fff;
+    font-size: xx-large;
+}
+
+.vote-count-page table {
+    width:100px;
+    margin:20px;
+    color:#fff
+}
+
+.vote-count-page th, .vote-count-page td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.vote-count-page th {
+    background-color: #4c96af;
+    color: white;
+}
+Timer Popup Styling
+#timer-popup {
+    display: none; /* Initially hidden */
+}
+
+#timer-popup .popup-content {
+    max-width: 300px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#timer-popup #timer {
+    margin: 20px 0;
+    font-size: 32px;
+    font-weight: bold;
+    color: #FF5733;
+}
+/* Style for the popup overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+.popup-content {
+    background-color: rgb(15, 10, 72);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide the main content initially */
+.hidden-content {
+    display: none;
+}

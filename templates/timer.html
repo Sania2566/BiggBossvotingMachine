@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{{ url_for('static', filename='images/fevicon final.jpg') }}">
+
+  <title>Waiting Area with Timer</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    .waiting-area {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+    }
+
+    .timer-box {
+      text-align: center;
+      padding: 30px;
+      border: 2px solid white;
+      border-radius: 10px;
+      background-color: rgb(7, 10, 47);
+    }
+
+    .timer-box h1 {
+      font-size: 3rem;
+      color: aliceblue;
+    }
+
+    .timer-box p {
+      font-size: 1.2rem;
+      color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔥 Background Video -->
+<video autoplay muted loop playsinline id="bgVideo" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover;">
+  <source src="{{ url_for('static', filename='vedios/Blue clock numbers photography&video background.mp4') }}" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<!-- Waiting Area -->
+<div class="waiting-area">
+  <div class="timer-box">
+    <h1 id="timer">00:05</h1>
+    <p>
+      Time remaining in your waiting session<br />
+      (YOU HAVE ONLY ONE CHANCE TO VOTE)
+    </p>
+  </div>
+</div>
+
+<!-- Minimal JavaScript for Countdown and Redirect -->
+<script>
+  let timeLeft = 5; // in seconds
+  const timerElement = document.getElementById('timer');
+
+  const interval = setInterval(() => {
+    timeLeft--;
+
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+    if (timeLeft <= 0) {
+      clearInterval(interval);
+      window.location.href = "{{ url_for('second') }}"; 
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>

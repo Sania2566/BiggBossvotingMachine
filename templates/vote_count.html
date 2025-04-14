@@ -1,0 +1,42 @@
+<!-- templates/vote_count.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Vote Count</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vote_count.css') }}">
+</head>
+<body>
+
+<h1>Admin - Vote Count</h1>
+<table>
+    <tr>
+        <th>Contestant</th>
+        <th>Votes</th>
+    </tr>
+    <tr><td>Siddharth Shukla</td><td id="count-1">{{ vote_counts[1] }}</td></tr>
+    <tr><td>Rashmi Desai</td><td id="count-2">{{ vote_counts[2] }}</td></tr>
+    <tr><td>Shehnaaz Kaur Gill</td><td id="count-3">{{ vote_counts[3] }}</td></tr>
+    <tr><td>Devoleena Bhatachaarjee</td><td id="count-4">{{ vote_counts[4] }}</td></tr>
+    <tr><td>Asim Riaz</td><td id="count-5">{{ vote_counts[5] }}</td></tr>
+    <tr><td>Paras Chhabra</td><td id="count-6">{{ vote_counts[6] }}</td></tr>
+    <tr><td>Arti Singh</td><td id="count-7">{{ vote_counts[7] }}</td></tr>
+    <tr><td>Mahira Sharma</td><td id="count-8">{{ vote_counts[8] }}</td></tr>
+    <tr><td>Shefali Bagga</td><td id="count-9">{{ vote_counts[9] }}</td></tr>
+    <tr><td>Koena Mitra</td><td id="count-10">{{ vote_counts[10] }}</td></tr>
+    <tr><td>Abu Malik</td><td id="count-11">{{ vote_counts[11] }}</td></tr>
+    <tr><td>Daljeet Kaur</td><td id="count-12">{{ vote_counts[12] }}</td></tr>
+    <tr><td>Siddharth Dey</td><td id="count-13">{{ vote_counts[13] }}</td></tr>
+    <tr><td>Arhaan Khan</td><td id="count-14">{{ vote_counts[14] }}</td></tr>
+    <tr><td>Vikas Gupta</td><td id="count-15">{{ vote_counts[15] }}</td></tr>
+    <tr><td>Umar Khan</td><td id="count-16">{{ vote_counts[16] }}</td></tr>
+</table>
+
+<br>
+<!-- ✅ Cleanest solution -->
+<a href="{{ url_for('second') }}">Back to voting</a>
+
+
+
+</body>
+</html>

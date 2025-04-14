@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Boss Voting Machine</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/fevicon final.jpg') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/second.css') }}">
+
+
+</head>
+<body>
+  <!-- Timer Popup (Visible initially) -->
+  <!-- <div class="overlay" id="timer-popup">
+    <div class="popup-content">
+        <h2>Please Wait</h2>
+        <p>The voting will start in <span id="timer"></span> seconds.
+        <br>(you can vote only once)</p>
+    </div>
+</div> -->
+
+ <!-- Side Dashboard -->
+ <div class="side-dashboard">
+    <!-- Profile Section -->
+   <!-- Main Profile Picture Display -->
+   
+       
+   <h2>Dashboard</h2>
+   <br>
+       <a href="{{ url_for('second') }}" id="voting-machine">Main page</a>
+       <br>
+       <a href="{{ url_for('index') }}" id="profile-btn">Profile</a>
+       <br>
+       <a href="{{ url_for('highlight') }}">Highlights</a>
+       <br>
+       <a href="{{ url_for('description') }}" >Description</a>
+       <br>
+       <a href="{{ url_for('tutorial') }}">Tutorial</a>
+       <br>
+       <a href="{{ url_for('login') }}">Admin Vote Count</a>
+
+       <br><br><br><br><br><br><br><br><br><br><br><br><br>
+       <a href="{{ url_for('logout') }}">Log out</a>
+      
+   </div>
+   
+   
+<!-- <div id="popup" class="popup hidden">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <p id="message"></p>
+        
+    </div>
+</div> -->
+
+<!-- Voting Machine Container -->
+<div class="container">
+    <!-- 16 contestant cards -->
+    <div class="card" id="contestant-1">
+        <img src="{{ url_for('static', filename='images/sid.jpeg') }}" alt="Contestant 1">
+        <h3>Sidharth Shukla</h3>
+        <div class="votes" id="votes-1"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(1)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-2">
+        <img src="{{ url_for('static', filename='images/rashmi.jpeg') }}" alt="Contestant 2">
+        <h3>Rashmi Desai</h3>
+        <div class="votes" id="votes-2"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(2)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-3">
+        <img src="{{ url_for('static', filename='images/shehnaz.jpg') }}" alt="Contestant 3">
+        <h3>Shehnaaz Kaur Gill</h3>
+        <div class="votes" id="votes-3"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(3)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-4">
+        <img src="{{ url_for('static', filename='images/devo.webp') }}" alt="Contestant 4">
+        <h3>Devoleena Bhatachaarjee</h3>
+        <div class="votes" id="votes-4"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(4)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-5">
+        <img src="{{ url_for('static', filename='images/asim.png') }}" alt="Contestant 5">
+        <h3>Asim Riaz</h3>
+        <div class="votes" id="votes-5"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(5)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-6">
+        <img src="{{ url_for('static', filename='images/paras.jpeg') }}" alt="Contestant 6">
+        <h3>Paras Chhabra</h3>
+        <div class="votes" id="votes-6"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(6)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-7">
+        <img src="{{ url_for('static', filename='images/arti.jpeg') }}" alt="Contestant 7">
+        <h3>Arti Singh</h3>
+        <div class="votes" id="votes-7"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(7)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-8">
+        <img src="{{ url_for('static', filename='images/mahira.jpg') }}" alt="Contestant 8">
+        <h3>Mahira Sharma</h3>
+        <div class="votes" id="votes-8"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(8)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-9">
+        <img src="{{ url_for('static', filename='images/Shefali-Bagga-759.webp') }}" alt="Contestant 9">
+        <h3>Shefali Bagga</h3>
+        <div class="votes" id="votes-9"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(9)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-10">
+        <img src="{{ url_for('static', filename='images/kohen.jpg') }}" alt="Contestant 10">
+        <h3>Koena Mitra</h3>
+        <div class="votes" id="votes-10"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(10)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-11">
+        <img src="{{ url_for('static', filename='images/abu.jpeg') }}" alt="Contestant 11">
+        <h3>Abu Malik</h3>
+        <div class="votes" id="votes-11"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+        <button onclick="vote(11)">Vote</button>
+        {% endif %}
+        
+    </div>
+    <div class="card" id="contestant-12">
+        <img src="{{ url_for('static', filename='images/diljeet.jpeg') }}" alt="Contestant 12">
+        <h3>Daljeet Kaur</h3>
+        <div class="votes" id="votes-12"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(12)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-13">
+        <img src="{{ url_for('static', filename='images/dey.avif') }}" alt="Contestant 13">
+        <h3>Siddharth Dey</h3>
+        <div class="votes" id="votes-13"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+        <button onclick="vote(13)">Vote</button>
+        {% endif %}
+        
+    </div>
+    <div class="card" id="contestant-14">
+        <img src="{{ url_for('static', filename='images/arhaan.jpg') }}" alt="Contestant 14">
+        <h3>Arhaan Khan</h3>
+        <div class="votes" id="votes-14"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(14)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-15">
+        <img src="{{ url_for('static', filename='images/vikas.jpg') }}" alt="Contestant 15">
+        <h3>Vikaas Gupta</h3>
+        <div class="votes" id="votes-15"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(15)">Vote</button>
+{% endif %}
+
+    </div>
+    <div class="card" id="contestant-16">
+        <img src="{{ url_for('static', filename='images/umar.jpg') }}" alt="Contestant 16">
+        <h3>Umar khan</h3>
+        <div class="votes" id="votes-16"><span style="display: none;">0</span></div>
+        {% if not is_admin %}
+<button onclick="vote(16)">Vote</button>
+{% endif %}
+
+    </div>
+</div>
+
+<!-- Popup Section -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2>Congratulations!</h2>
+        <p>Your vote has been successfully submitted.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<!-- Duplicate Vote Warning -->
+<div class="popup" id="duplicate-popup">
+    <div class="popup-content">
+        <h2>Warning!</h2>
+        <p>You have already voted from this device.</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<!-- Vote Count Page
+
+<div class="vote-count-page" id="vote-count-page">
+    <h1>Vote Count</h1>
+    <table style="display: flex; width: 600px;justify-content: center;">
+        <tr>
+            <th>Contestant</th>
+            <th>Votes</th>
+        </tr>
+        <tr>
+            <td>Siddharth Shukla</td>
+            <td id="count-1">0</td>
+        </tr>
+        <tr>
+            <td>Rashmi Desai</td>
+            <td id="count-2">0</td>
+        </tr>
+        <tr>
+            <td>Shehnaaz Kaur Gill</td>
+            <td id="count-3">0</td>
+        </tr>
+        <tr>
+            <td>Devoleena Bhatachaarjee</td>
+            <td id="count-4">0</td>
+        </tr>
+        <tr>
+            <td>Asim Riaz</td>
+            <td id="count-5">0</td>
+        </tr>
+        <tr>
+            <td>Paras Chabbra</td>
+            <td id="count-6">0</td>
+        </tr>
+        <tr>
+            <td>Arti Singh</td>
+            <td id="count-7">0</td>
+        </tr>
+        <tr>
+            <td>Mahira Sharma</td>
+            <td id="count-8">0</td>
+        </tr>
+        <tr>
+            <td>Shefali Bagga</td>
+            <td id="count-9">0</td>
+        </tr>
+        <tr>
+            <td>Kohen Mitra</td>
+            <td id="count-10">0</td>
+        </tr>
+        <tr>
+            <td>Abu Malik</td>
+            <td id="count-11">0</td>
+        </tr>
+        <tr>
+            <td>daljeet Kaur</td>
+            <td id="count-12">0</td>
+        </tr>
+        <tr>
+            <td>Siddharth Dey</td>
+            <td id="count-13">0</td>
+        </tr>
+        <tr>
+            <td>Arhaan Khan</td>
+            <td id="count-14">0</td>
+        </tr>
+        <tr>
+            <td>Vikas Gupta</td>
+            <td id="count-15">0</td>
+        </tr>
+        <tr>
+            <td>Umar Khan</td>
+            <td id="count-16">0</td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="goBack()">Go Back</button>
+</div>-->
+<script id="user-data" type="application/json">
+    {
+        "votedFor": {{ voted_for | tojson }},
+        "voteCounts": {{ vote_counts | tojson }}
+    }
+</script>
+<script src="{{ url_for('static', filename='js/second.js') }}"></script>
+
+
+</body>
+</html>

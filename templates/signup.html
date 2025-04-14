@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting Machine - Sign Up</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/fevicon final.jpg') }}">
+
+  <!-- Bootstrap CDN for alerts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    /* body {
+      background: radial-gradient(circle, #000a42, #001a66, #002b99);
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    } */
+
+    .mainbox {
+      width: 420px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 5px solid rgb(10, 93, 134);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgb(7, 183, 199);
+      color: #fff;
+      border-radius: 10px;
+      padding: 30px 40px;
+      text-align: center;
+    }
+    .signup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+    .mainbox h1 {
+      font-size: 36px;
+      color: rgb(20, 75, 176);
+    }
+
+    .form-box input {
+      width: 100%;
+      height: 40px;
+      background: transparent;
+      border-radius: 20px;
+      border: 2px solid rgb(15, 52, 173);
+      font-size: 16px;
+      color: #fff;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+    }
+
+    .form-box input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .submit-box button {
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+      border: 2px solid rgb(32, 125, 172);
+      background-color: rgb(22, 9, 107);
+      color: #e9ecf0;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-box button:hover {
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop playsinline id="bgVideo" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover;">
+    <source src="{{ url_for('static', filename='vedios/videoplayback.mp4') }}" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="signup-wrapper">
+  <div class="mainbox"> 
+
+    <!-- ✅ Flash message block -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form id="signup-form" method="POST" action="{{ url_for('signup') }}">
+      <h1>CREATE ACCOUNT!</h1><br>
+
+      <div class="form-box">
+        <input type="text" name="name" id="name" placeholder="Full Name" required>
+        <input type="email" name="email" id="email" placeholder="Email Address" required>
+        <input type="text" name="mobile" id="mobile" placeholder="Mobile Number" required>
+        <input type="text" name="username" id="username" placeholder="Username" required>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+
+      <div class="submit-box">
+        <button type="submit">Register</button>
+      </div>
+    </form>  
+  </div>
+</div>
+
+  <!-- Bootstrap JS for dismissible alerts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional: <script src="{{ url_for('static', filename='js/signup.js') }}"></script> -->
+
+</body>
+</html>

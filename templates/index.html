@@ -1,0 +1,265 @@
+<!-- #index page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Machine Profile</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/fevicon final.jpg') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+</head>
+<style>
+    /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #04193f, #031738);
+    color: #fff;
+}
+
+/* Container with Yellow Glow */
+.container {
+    width: 60%;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #ffcc00, 0 0 30px rgba(255, 204, 0, 0.6);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Glow Effect on Hover */
+.container:hover {
+    box-shadow: 0 0 20px #ffcc00, 0 0 40px rgba(255, 204, 0, 0.8);
+}
+
+
+header h1 {
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Side Dashboard */
+.side-dashboard {
+    position: fixed;
+    width: 270px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    padding-top: 40px;
+    box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.6);
+}
+
+.side-dashboard a {
+    display: block;
+    padding: 12px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 8px;
+}
+
+.side-dashboard a:hover {
+    background: #ffcc00;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #222;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile img {
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 2px solid #ffcc00;
+}
+
+/* Avatar Section */
+.avatar-section {
+    text-align: center;
+    background: #333;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.avatar-preview img {
+    border-radius: 50%;
+    border: 3px solid #ffcc00;
+    transition: transform 0.3s ease-in-out;
+}
+
+.avatar-preview img:hover {
+    transform: scale(1.1);
+}
+
+button {
+    background: #ffcc00;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e6b800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 204, 0, 0.4);
+}
+
+/* Profile Picture */
+.profile-pic {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 4px solid #ffcc00;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-pic:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+.profile-info p {
+    font-size: 1.1em;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.profile-info p:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Contact Section */
+.contact {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    margin-top: 100px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+#fileInput{
+        display:none;
+
+    }
+
+</style>
+<body>
+    <!-- Side Dashboard -->
+<div class="side-dashboard">
+ <!-- Profile Section -->
+<div class="profile" id="profile-btn">
+    <img src="https://via.placeholder.com/30" alt="Profile Icon" id="profile-icon"> 
+    <span id="profile-name">Name</span>
+</div>
+
+<!-- Avatar Creation Section -->
+<div class="avatar-section" id="avatar-section">
+    <h2>Create Your Avatar</h2>
+    <div class="avatar-preview">
+        <img src="https://via.placeholder.com/100" alt="Avatar" id="avatar-preview" >
+    </div>
+    <input type="file" id="avatar-upload" accept="image/*"  />
+    <div id="avatar-error" style="color: red; display: none;">Please upload a valid image file.</div>
+    <br>
+    <button id="save-avatar">Save Avatar</button>
+    <button id="reset-avatar">Reset Avatar</button>
+    <button id="cancel-avatar" style="margin-left:0px;">Cancel</button>
+    
+</div>   
+    
+<h2>Dashboard</h2>
+<br>
+    <a href="{{ url_for('second') }}" id="voting-machine">Main page</a>
+    <br>
+    <a href="{{ url_for('index') }}" id="profile-btn">Profile</a>
+    <br>
+    <a href="{{ url_for('highlight') }}">Highlights</a>
+    <br>
+    <a href="{{ url_for('description') }}" >Description</a>
+    <br>
+    <a href="{{ url_for('tutorial') }}">Tutorial</a>
+    <br>
+    <a href="#" onclick="showVoteCountPage()">Vote Count</a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <a href="{{ url_for('login') }}">Log out</a>
+      
+</div>
+
+
+    <div class="container">
+        <header>
+            <h1>Voting Machine Profile</h1>
+        </header>
+        <img id="profilePic" src="profile-placeholder.png" alt="Profile Picture" class="profile-pic" >
+        <!-- <input type="file" id="fileInput" accept="image/*"> -->
+        <input type="file" id="fileInput" accept="image/*">
+            <section class="profile-info">
+                <p><strong>Username:</strong> <span id="usernameDisplay"></span></p>
+                <p><strong>Name:</strong> <span id="nameDisplay"></span></p>
+                <!-- <p><strong>Gender:</strong> <span id="genderDisplay"></span></p> -->
+                <p><strong>Mobile No:</strong> <span id="mobileDisplay"></span></p>
+                <p><strong>Email ID:</strong> <span id="emailDisplay"></span></p>
+            </section>
+        <section class="contact">
+            <h3>Contact Information</h3>
+            <p><strong>Support Hotline:</strong> 9727404628</p>
+            <p><strong>Email:</strong> bigboss-s13@gmail.com</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2017@bigboss.vote-13</p>
+        </footer>
+    </div>
+    <script>
+        const userInfo = {
+          username: "{{ user.username }}",
+          name: "{{ user.name }}",
+          email: "{{ user.email }}",
+          mobile: "{{ user.mobile }}"
+        };
+      
+        // Save to localStorage for both index.html and second.html
+        localStorage.setItem("username", userInfo.username);
+        localStorage.setItem("name", userInfo.name);
+        localStorage.setItem("email", userInfo.email);
+        localStorage.setItem("mobile", userInfo.mobile);
+      </script>
+      
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+   
+</body>
+</html>

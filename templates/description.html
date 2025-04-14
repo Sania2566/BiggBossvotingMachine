@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bigg Boss Contestants</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/fevicon final.jpg') }}">
+
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            padding: 10px 20px;
+            background-color: #00274D;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* General styles */
+        body {
+            background-color: #001F3F;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #FFD700;
+        }
+
+        header {
+            background-color: #00274D;
+            padding: 20px;
+            text-align: center;
+            color: #FFD700;
+            box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            text-shadow: 0px 0px 10px #FFD700;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        header h1:hover {
+            transform: scale(1.1);
+        }
+
+        header p {
+            font-size: 1.3em;
+            color: #FFEA00;
+            margin-top: 10px;
+            text-shadow: 0px 0px 5px #FFD700;
+        }
+
+        /* Centered Grid */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 80px;
+            justify-content: center;
+        }
+
+        /* Contestant Card Styling */
+        .contestant-card {
+            background-color: rgba(0, 0, 255, 0.1);
+            border: 3px solid #FFD700;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+            width: 300px;
+            gap: 100px;
+            max-width: 500px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .contestant-card:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* Card Inner Wrapper */
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            position: relative;
+        }
+
+        .contestant-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front & Back sides of the card */
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        /* Front side styling */
+        .card-front {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #00274D;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .contestant-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50px;
+            object-fit: cover;
+            border: 3px solid #FFD700;
+            box-shadow: 0px 0px 10px #FFD700;
+        }
+
+        .contestant-details {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contestant-details h2 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+
+        .age, .occupation {
+            font-size: 1.1em;
+            color: #FFEA00;
+            margin-bottom: 10px;
+        }
+
+        /* Back side styling */
+        .card-back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #001F3F;
+            transform: rotateY(180deg);
+            padding: 20px;
+            border-radius: 10px;
+            color: #FFD700;
+        }
+
+        .bio {
+            font-size: 1em;
+            color: #FFEA00;
+            line-height: 1.5;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .contestant-card {
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bigg Boss Contestants</h1>
+        <p>Meet the top contestants of Bigg Boss!</p>
+    </header>
+    <div class="container">
+         <div class="container">
+        <!-- Contestant 1 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/sid.jpeg') }}" alt="Contestant 1" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Siddharth Shukla</h2>
+                        <p class="age">Age: 43 (Born on December 12, 1980)</p>
+                        <p class="occupation">Occupation: Actor</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Sidharth Shukla was a popular actor in the Indian television industry, known for his roles in Balika Vadhu and Dil Se Dil Tak. He was also a model and had a significant fan following. His charismatic personality and dominating presence made him one of the strongest contestants. He won the show and gained immense popularity after his victory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 2 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/rashmi.jpeg') }}" alt="Contestant 2" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Rashami Desai</h2>
+                        <p class="age">Age: 37 (Born on February 13, 1986)</p>
+                        <p class="occupation">Occupation: Acteress,Model</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">A prominent TV actress, Rashami Desai became a household name for her role as Tapasya in Uttaran. Known for her strong screen presence, she was often seen at odds with other contestants in the house, especially Sidharth Shukla. Despite facing controversies, she remained a fan favorite.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 3 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/shehnaz.jpg') }}" alt="Contestant 3" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Asim Riaz</h2>
+                        <p class="age">Age:27 (Born on July 13, 1993)</p>
+                        <p class="occupation">Occupation: Actor,Model</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Asim Riaz is an Indian model, actor, rapper and fitness specialist.[1] He is best known for his recent appearance in the reality TV show Bigg Boss, and formerly for being the face of BlackBerry, Numero Uno, and B’lue. He has gained mass following on his social networks.
+
+                            Born in Jammu, Riaz has gained attention during his time at Bigg Boss house. He has been able to build mass following on his social handles with his videos related to fitness and bodybuilding. Riaz was a runner-up of the Bigg Boss season 13.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 4 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/devoleena.jpeg') }}" alt="Contestant 4" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Devoleena Bhattacharjee</h2>
+                        <p class="age">Age:34 (Born on August 22, 1985)</p>
+                        <p class="occupation">Occupation:Actress,Model</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Devoleena Bhattacharjee is an Indian television actress and trained Bharatanatyam dancer. She is known for playing Gopi Modi in StarPlus's long-running popular show Saath Nibhaana Saathiya. She also participated in Bigg Boss 13, Bigg Boss 14 and Bigg Boss 15</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 5 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/asim.png') }}" alt="Contestant 5" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Shehnaaz Kaur Gill</h2>
+                        <p class="age">Age: 35</p>
+                        <p class="occupation">Occupation: Punjabi singer and actress</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Shehnaaz Kaur Gill is an Indian actress, model and singer who works in television and films. She began her modelling career with the 2015 music video, Shiv Di Kitaab. In 2017, she debuted as an actress in Punjabi film Sat Shri Akaal England</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 6 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/paras.jpeg') }}" alt="Contestant 6" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Paras Chhabra</h2>
+                        <p class="age">Age: 29</p>
+                        <p class="occupation">Occupation:Television actor and model</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Paras Chhabra is an Indian model, actor and reality television personality. He is known for winning MTV Splitsvilla 5 and for being a finalist in Bigg Boss 13.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 7 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/arti.jpeg') }}" alt="Contestant 7" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Arti Singh</h2>
+                        <p class="age">Age: 31</p>
+                        <p class="occupation">Occupation: Television actress</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Arti Shaarma also known as Arti Singh, is an Indian actress who works in Hindi television. She married businessman Deepak Chauhan in Mumbai on Thursday, 25 April 2024. She made her acting debut in 2007 with Star Plus's drama series Maayka.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 8 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/mahira.jpg') }}" alt="Contestant 8" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Mahira Sharma</h2>
+                        <p class="age">Age: 26</p>
+                        <p class="occupation">Occupation:Television actress.</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Mahira Sharma is an Indian Actor who works predominantly in Bollywood and Pollywood Cinema. Mahira made her debut with Ekta Kapoor (2018) and received praise for her role in Lehmberginni (2023).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 9 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/Shefali-Bagga-759.webp') }}" alt="Contestant 9" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Shefali Bagga</h2>
+                        <p class="age">Age: 34</p>
+                        <p class="occupation">Occupation:Journalist and television news ancho</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Shefali Bagga is an eminent newsreader, journalist, and renowned personality of Indian Television. Shefali has hosted and anchored in some of the most popular news channels, Aaj Taj and Tez.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 10 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/kohen.jpg') }}" alt="Contestant 10" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Koena Mitra</h2>
+                        <p class="age">Age: 27</p>
+                        <p class="occupation">Occupation:Film actress and model </p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Koena Mitra is an Indian actress, model and beauty pageant titleholder who represented India at Miss Intercontinental 2001 and placed Top 12. She also appears in Hindi films along with Tamil films and Bengali films.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 11 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/abu.jpeg') }}" alt="Contestant 11" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Abu Malik</h2>
+                        <p class="age">Age: 30</p>
+                        <p class="occupation">Occupation:Singer and brother of music director Anu Malik</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">The author is a pioneer of live shows in the country having performed over 10000 shows round the globe, with every Bollywood actors and singers. The author belongs to a musical family with his father Sardar Malik a famous yesteryear music director and maternal uncle Hasrat Jaipuri was a very famous Bollywood poet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 12 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/diljeet.jpeg') }}" alt="Contestant 12" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Dalljiet Kaur</h2>
+                        <p class="age">Age: 25</p>
+                        <p class="occupation">Occupation:Television actress</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Dalljiet Kaur is an Indian television actress primarily known for her portrayals of Niyati in Kulvaddhu, Anjali in Iss Pyaar Ko Kya Naam Doon? and Manjiri in Kaala Teeka. She participated and became the winner of Nach Baliye with Shalin Bhanot. In 2019, she participated in the reality show Bigg Boss 13..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 13 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/dey.avif') }}" alt="Contestant 13" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Siddharth Dey</h2>
+                        <p class="age">Age: 36</p>
+                        <p class="occupation">Occupation: Writer</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Siddharth Dey is a scriptwriter who has written for several reality shows including the likes of Dance India Dance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 14 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/arhaan.jpg') }}" alt="Contestant 14" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Arhaan Khan</h2>
+                        <p class="age">Age: 33</p>
+                        <p class="occupation">Occupation: Fashion Designer</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Mazhar Shaikh known professionally as Arhaan Khan is an Indian actor and model. He is known for his portrayal of Rana Singh Ahlawat in Badho Bahu on &TV.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 15 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/vikas.jpg') }}" alt="Contestant 15" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Vikaas Gupta</h2>
+                        <p class="age">Age: 28</p>
+                        <p class="occupation">Occupation: Athlete</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Daniel is a professional athlete known for his dedication, discipline, and perseverance in his sport.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contestant 16 -->
+        <div class="contestant-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="{{ url_for('static', filename='images/umar.jpg') }}" alt="Contestant 16" class="contestant-image">
+                    <div class="contestant-details">
+                        <h2>Umar khan</h2>
+                        <p class="age">Age: 26</p>
+                        <p class="occupation">Occupation: Photographer</p>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="bio-content">
+                        <p class="bio">Born in 1948, Umar Khan belongs to the tribal areas of Pakistan, one of the most remote areas of the country, where not many children used to have the opportunity of school education or when they did get a chance, very few were able to continue to their secondary education. He started his schooling in 1954..</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>  
+        <a href="{{ url_for('second') }}" class="back-button">Back to Main Page</a>
+    <script>
+         // On successful login/signup
+         localStorage.setItem('loggedIn', 'true'); // Store a flag indicating user is logged in
+        
+    </script>
+       
+
+</body>
+</html>
+
+
