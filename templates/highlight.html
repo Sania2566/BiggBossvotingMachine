@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Video Collection</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/fevicon final.jpg') }}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #072443;
+            color: white;
+            text-align: center;
+            box-shadow: 0 0 20px yellow;
+        }
+        h1 {
+            padding: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(255, 255, 0, 0.8);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(255, 255, 0, 0.8);
+            transition: transform 0.3s;
+        }
+        .video-card:hover {
+            transform: scale(1.05);
+        }
+        iframe {
+            width: 100%;
+            border-radius: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #ffdd57;
+        }
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #072443;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: background 0.3s;
+            box-shadow: 0 0 10px yellow;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #052156;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 0 10px yellow;
+        }
+        footer img {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><i>HIGHLIGHTS</i></h1>
+    <div class="container">
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 1</h2>
+            <iframe src="https://www.youtube.com/embed/AiMIni0PSFY" allowfullscreen></iframe>
+            <p>Asim Riaz and Sidharth Shukla bond over bodybuilding.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 2</h2>
+            <iframe src="https://www.youtube.com/embed/L_mpsWV_UsQ" allowfullscreen></iframe>
+            <p>Koena Mitra reminisces about Durga Puja.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 3</h2>
+            <iframe src="https://www.youtube.com/embed/2GBaOhxnyx4" allowfullscreen></iframe>
+            <p>Shehnaz performs Gidda to entertain housemates.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 4</h2>
+            <iframe src="https://www.youtube.com/embed/_py7yPNeGdw" allowfullscreen></iframe>
+            <p>Shehnaz and Paras Chhabra discuss their experiences.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 5</h2>
+            <iframe src="https://www.youtube.com/embed/nf-TQqd2Ptc" allowfullscreen></iframe>
+            <p>Shefali Bagga confesses her crush on Big Boss.</p>
+        </div>
+        <!-- Additional video cards for days 6 to 15 with embedded videos -->
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 6</h2>
+            <iframe src="https://www.youtube.com/embed/4c4fJ54iU-s" allowfullscreen></iframe>
+            <p>Housemates get into heated arguments.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 7</h2>
+            <iframe src="https://www.youtube.com/embed/nnZY8ZD8Lh4" allowfullscreen></iframe>
+            <p>Exciting new task announced.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 8</h2>
+            <iframe src="https://www.youtube.com/embed/uelRyCOALdY" allowfullscreen></iframe>
+            <p>Exciting new task announced.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 9</h2>
+            <iframe src="https://www.youtube.com/embed/9ol9quEyM8Q" allowfullscreen></iframe>
+            <p>Exciting new task announced.</p>
+        </div>
+        <div class="video-card">
+            <h2>Bigg Boss S13 - Day 10</h2>
+            <iframe src="https://www.youtube.com/embed/8F8GxZFa50w" allowfullscreen></iframe>
+            <p>Exciting new task announced.</p>
+        </div>
+        
+    </div>
+
+    <a href="{{ url_for('second') }}" class="back-button">Go Back to Main Page</a>
+    <footer>
+        <a href="https://www.youtube.com/@colorstv" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube Icon">
+        </a>
+        <a href="https://www.jiocinema.com/" target="_blank">
+            <img src="{{ url_for('static', filename='images/download.jpeg') }}" alt="JioCinema Icon">
+        </a>
+    </footer>
+</body>
+</html>

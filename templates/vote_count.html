@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Vote Count</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vote_count.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #08033c, #021a21);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1caac6;
+            font-size: 3rem;
+            margin-bottom: 25px;
+        }
+
+        table {
+            margin: 0 auto 50px auto;
+            border-collapse: collapse;
+            width: 85%;
+            background-color: #052061;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+        }
+
+        th, td {
+            padding: 16px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #06555e;
+            color: white;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: #095b61;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Pie chart container styling */
+        .chart-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: rgb(2, 4, 43);
+            backdrop-filter: blur(80px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto !important;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop playsinline id="bgVideo" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1; object-fit: cover;">
+        <source src="{{ url_for('static', filename='vedios/videoplayback.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+<h1>Admin - Vote Count</h1>
+
+<table>
+    <tr>
+        <th>Contestant</th>
+        <th>Votes</th>
+    </tr>
+    {% for i in range(1, 17) %}
+        <tr>
+            <td>{{ contestant_names[i] }}</td>
+            <td id="count-{{ i }}">{{ vote_counts[i] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<a href="{{ url_for('second') }}">← Back to Voting</a>
+<a href="{{ url_for('top5') }}">View Top 5 Contestants →</a>
+<a href="{{ url_for('users') }}">View All Users →</a>
+
+
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JSON Data Injection -->
+<script id="vote-data" type="application/json">
+    {{ vote_counts | tojson }}
+</script>
+
+<!-- Chart Container -->
+<div class="chart-container">
+    <canvas id="votePieChart" width="400" height="400"></canvas>
+</div>
+
+<script>
+    const voteCounts = JSON.parse(document.getElementById('vote-data').textContent);
+
+    const contestantNames = {
+        1: "Siddharth Shukla", 2: "Rashmi Desai", 3: "Shehnaaz Kaur Gill",
+        4: "Devoleena Bhatachaarjee", 5: "Asim Riaz", 6: "Paras Chhabra",
+        7: "Arti Singh", 8: "Mahira Sharma", 9: "Shefali Bagga",
+        10: "Koena Mitra", 11: "Abu Malik", 12: "Daljeet Kaur",
+        13: "Siddharth Dey", 14: "Arhaan Khan", 15: "Vikas Gupta", 16: "Umar Khan"
+    };
+
+    const labels = Object.keys(voteCounts).map(id => contestantNames[id]);
+    const data = Object.values(voteCounts);
+
+    const ctx = document.getElementById('votePieChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Vote Distribution',
+                data: data,
+                backgroundColor: [
+                    '#8e24aa', '#d81b60', '#5c6bc0', '#43a047', '#fbc02d', '#ff7043',
+                    '#26c6da', '#ab47bc', '#7e57c2', '#66bb6a', '#ffa726', '#ec407a',
+                    '#29b6f6', '#26a69a', '#ef5350', '#ffee58'
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: {
+                animateRotate: true,
+                animateScale: true,
+                duration: 2500,
+                easing: 'easeOutElastic'
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Vote Distribution Pie Chart',
+                    font: {
+                        size: 22,
+                        weight: 'bold'
+                    },
+                    color: '#4a148c'
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                intersect:true
+            },
+            hover: {
+                mode: null, // 🚫 disables hover effect
+                animationDuration: 0
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
